@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 
 
@@ -27,6 +27,13 @@ def get_params(request):
     return HttpResponse(
         ", ".join([f"{param} = {value}" for param, value in request.GET.items()])
     )
+
+
+def redirect_view(request):
+    return redirect('first_app:index', permanent=True)  # Можно указать view
+    # return redirect('name', 'param')
+    # return redirect(reverse('name', args=('param',))
+    # HttpResponseRedirect, HttpResponsePermanentRedirect
 
 
 def page_not_found(request, exception):

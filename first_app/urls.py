@@ -4,7 +4,7 @@ from first_app import views, converters
 
 register_converter(converters.FourDigitYearConverter, 'year4')
 
-namespace = 'first_app'
+app_name = 'first_app'
 
 urlpatterns = [
     path(
@@ -31,6 +31,10 @@ urlpatterns = [
         'get_params/',
         views.get_params,
         name='get_params',
-    )
+    ),
+    path(
+        'redirect',
+        views.redirect_view,
+        name='redirect',
+    ),
 ]
-
