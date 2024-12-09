@@ -1,3 +1,4 @@
+from django.conf.urls import handler404
 from django.urls import path, register_converter
 from first_app import views, converters
 
@@ -26,4 +27,10 @@ urlpatterns = [
         views.years,
         name='years',
     ),
+    path(
+        'get_params/',
+        views.get_params,
+        name='get_params',
+    )
 ]
+
