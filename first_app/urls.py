@@ -42,4 +42,9 @@ urlpatterns = [
         views.template,
         name='template',
     ),
+    path(
+        'custom_tags',
+        views.custom_tags,
+        name='custom_tags',
+    ),
 ]

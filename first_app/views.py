@@ -49,3 +49,7 @@ def template(request):
         ]
     }
     return render(request, 'first_app/template.html', context)
+
+
+def custom_tags(request):
+    return render(request, 'first_app/custom_tags.html')

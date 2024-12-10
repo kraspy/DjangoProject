@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+	{{ block.super }} Custom Tags
+{% endblock %}
+
+{% block page_header %}
+	Custom tags
+{% endblock %}
+
+{% block content %}
+  {% load simple_tags %}
+  {% menu_tag as menu_items %}
+  <ul>
+  {% for menu_item in menu_items %}
+    <li><a href="{{ menu_item.url }}">{{ menu_item.title }}</a></li>
+  {% endfor %}
+  </ul>
+
+  {% load inclusion_tags %}
+  {% include_part_of_html %}
+
+{% endblock %}
