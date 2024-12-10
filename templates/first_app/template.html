@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+	{{ block.super }} Template page
+{% endblock %}
+
+{% block page_header %}
+	Template page header
+{% endblock %}
+
+{% block content %}
+	Some content
+  <ul>links:
+    <li><a href="{% url 'first_app:index' %}">Link to index</a></li>
+  </ul>
+  {% if users %}
+    <ul>Users: {{ users|length }}
+    {% for user in users %}
+  	  <li>
+        {{ forloop.counter }}. {{ user.name }}, {{ user.age }} ({{ user.phone }})
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+
+{% endblock %}

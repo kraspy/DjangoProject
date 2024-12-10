@@ -38,3 +38,14 @@ def redirect_view(request):
 
 def page_not_found(request, exception):
     return HttpResponseNotFound(f"404 Page not found: {exception}")
+
+
+def template(request):
+    context = {
+        'users': [
+            {'name': 'Max', 'age': 30, 'phone': '79998887766'},
+            {'name': 'Alex', 'age': 25, 'phone': '78887776655'},
+            {'name': 'Denis', 'age': 35, 'phone': '71234567890'},
+        ]
+    }
+    return render(request, 'first_app/template.html', context)

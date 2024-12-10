@@ -37,4 +37,9 @@ urlpatterns = [
         views.redirect_view,
         name='redirect',
     ),
+    path(
+        'template',
+        views.template,
+        name='template',
+    ),
 ]
