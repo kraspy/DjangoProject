@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+	{{ block.super }} {{ category.title }}
+{% endblock %}
+
+{% block page_header %}
+	{{ category.title }}
+{% endblock %}
+
+{% block content %}
+  <ul>
+  <li>{{ category.title }}</li>
+  <li>{{ category.description }}</li>
+  </ul>
+  {% if products %}
+  	<ul>Products
+    {% for product in products %}
+    	<li>
+        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+      </li>
+    {% endfor %}
+
+    </ul>
+  {% endif %}
+{% endblock %}

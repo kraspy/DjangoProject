@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+	{{ block.super }} {{ product.title }}
+{% endblock %}
+
+{% block page_header %}
+	{{ product.title }}
+{% endblock %}
+
+{% block content %}
+  <ul>
+  <li>{{ product.title }}</li>
+  <li>{{ product.description }}</li>
+  </ul>
+{% endblock %}

@@ -47,4 +47,19 @@ urlpatterns = [
         views.custom_tags,
         name='custom_tags',
     ),
+    path(
+        'categories/',
+        views.categories_list,
+        name='categories_list',
+    ),
+    path(
+        'category_detail/<slug:category_slug>/',
+        views.category_detail,
+        name='category_detail',
+    ),
+    path(
+        'product/<slug:product_slug>',
+        views.product_detail,
+        name='product_detail',
+    ),
 ]

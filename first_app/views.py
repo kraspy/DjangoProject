@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound, Http404
+
+from first_app.models import Category, Product
 
 
 # Create your views here.
@@ -53,3 +55,21 @@ def template(request):
 
 def custom_tags(request):
     return render(request, 'first_app/custom_tags.html')
+
+
+def categories_list(request):
+    context = {'categories': Category.objects.all()}
+    return render(request, 'first_app/categories.html', context)
+
+
+def category_detail(request, category_slug):
+    context = {
+        'category': get_object_or_404(Category, slug=category_slug),
+        'products': Category.objects.get(slug=category_slug).product_set.all(),
+    }
+    return render(request, 'first_app/category.html', context)
+
+
+def product_detail(request, product_slug):
+    prod = get_object_or_404(Product, slug=product_slug)
+    return render(request, 'first_app/product_detail.html', {'product': prod},)
