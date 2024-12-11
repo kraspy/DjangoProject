@@ -27,6 +27,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+    tags = models.ManyToManyField('ProductTag', blank=True, related_name='tags')
 
     objects = models.Manager()
     active_objects = ActiveProductsManager()
@@ -36,3 +37,11 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('first_app:product_detail', kwargs={'product_slug': self.slug})
+
+
+class ProductTag(models.Model):
+    title = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, db_index=True)
+
+    def __str__(self):
+        return self.title

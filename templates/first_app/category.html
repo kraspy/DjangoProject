@@ -18,6 +18,13 @@
     {% for product in active_products %}
     	<li>
         <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+        {% if product.tags %}
+          {% with  product.tags.all as tags %}
+            {% for tag in tags %}
+              {{ tag.title }}
+            {% endfor %}
+          {% endwith %}
+        {% endif %}
       </li>
     {% endfor %}
 
