@@ -63,13 +63,19 @@ def categories_list(request):
 
 
 def category_detail(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
     context = {
         'category': get_object_or_404(Category, slug=category_slug),
         'products': Category.objects.get(slug=category_slug).product_set.all(),
+        'active_products': Product.active_objects.filter(category=category),
     }
     return render(request, 'first_app/category.html', context)
 
 
 def product_detail(request, product_slug):
     prod = get_object_or_404(Product, slug=product_slug)
-    return render(request, 'first_app/product_detail.html', {'product': prod},)
+    return render(
+        request,
+        'first_app/product_detail.html',
+        {'product': prod},
+    )

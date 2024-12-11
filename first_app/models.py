@@ -13,6 +13,11 @@ class Category(models.Model):
         return self.title
 
 
+class ActiveProductsManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
+
+
 class Product(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True, db_index=True)
@@ -22,6 +27,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+
+    objects = models.Manager()
+    active_objects = ActiveProductsManager()
 
     def __str__(self):
         return self.title
